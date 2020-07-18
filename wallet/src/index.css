@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url(/xrpVector.svg);
+  background-position: right 0px top 0px;
+  background-repeat: no-repeat;
+  background-color: ghostwhite;
 }
 
 code {
