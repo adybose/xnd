@@ -1,10 +1,10 @@
-import React from "react";
-import "./App.css";
+import React from 'react'
+import './App.css'
 
-import Card from "./card";
+import Card from './card'
 
 function App() {
-  return <Card />;
+  return <Card />
 }
 
-export default App;
+export default App
