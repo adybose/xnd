@@ -1,14 +1,10 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+import Card from "./card";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        XND
-      </header>
-    </div>
-  );
+  return <Card />;
 }
 
 export default App;
