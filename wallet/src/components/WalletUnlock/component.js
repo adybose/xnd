@@ -1,13 +1,11 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Divider } from 'semantic-ui-react'
+import { Button, Form, Grid } from 'semantic-ui-react'
+
+import CardHeader from '../CardHeader'
 
 const WalletUnlock = () => (
   <>
-    <Header as="h4" style={{ color: 'white' }} textAlign="center">
-      Access your account
-    </Header>
-    <Divider />
-
+    <CardHeader text="Access your account" />
     <Form.Input fluid placeholder="Enter seed" size="large" />
     <Grid columns={2}>
       <Grid.Column verticalAlign="middle" floated="left" textAlign="left">
