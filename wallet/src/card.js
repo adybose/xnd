@@ -8,7 +8,7 @@ const WalletForm = () => (
         XND
       </Header>
       <Form size="large">
-        <Segment style={{ backgroundColor: '#002999' }} raised padded>
+        <Segment style={{ backgroundColor: '#002999', borderRadius: 7 }} raised padded>
           <Header as="h4" style={{ color: 'white' }} textAlign="center">
             Access your account
           </Header>
