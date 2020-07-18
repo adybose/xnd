@@ -3,12 +3,12 @@ import { Button, Form, Grid, Header, Segment, Divider } from 'semantic-ui-react'
 
 const WalletForm = () => (
   <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
-    <Grid.Column style={{ maxWidth: 450}}>
+    <Grid.Column style={{ maxWidth: 450 }}>
       <Header as="h2" style={{ color: '#e63946' }} textAlign="center">
         XND
       </Header>
       <Form size="large">
-        <Segment style={{ backgroundColor: '#002999', borderRadius: 7}} raised padded >
+        <Segment style={{ backgroundColor: '#002999', borderRadius: 7 }} raised padded>
           <Header as="h4" style={{ color: 'white' }} textAlign="center">
             Access your account
           </Header>
