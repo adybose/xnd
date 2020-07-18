@@ -9,7 +9,14 @@ const Card = ({ children }) => (
       </Header>
 
       <Form size="large">
-        <Segment style={{ backgroundColor: '#002999', borderRadius: 7}} raised padded>
+        <Segment
+          style={{
+            backgroundColor: '#002999',
+            borderRadius: 7,
+          }}
+          raised
+          padded
+        >
           {children}
         </Segment>
       </Form>
