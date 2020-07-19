@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 
 import component from './component'
-
 import { setView } from './actions'
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  views: state.views,
+})
 
 const mapDispatchToProps = (dispatch) => ({
   setView: (index) => dispatch(setView(index)),
