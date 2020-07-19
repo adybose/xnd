@@ -12,7 +12,7 @@ const WalletUnlock = (props) => (
       <Grid.Column verticalAlign="middle" floated="left" textAlign="left">
         <h5
           style={{ color: '#FFF' }}
-          onClick={() => props.setView(VIEWS.WALLET_CREATE)}
+          onClick={() => props.setView(VIEWS.CURRENCY_SELECT)}
         >
           Create wallet
         </h5>
