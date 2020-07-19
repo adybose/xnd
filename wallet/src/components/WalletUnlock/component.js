@@ -2,14 +2,20 @@ import React from 'react'
 import { Button, Form, Grid } from 'semantic-ui-react'
 
 import CardHeader from '../CardHeader'
+import VIEWS from '../../views'
 
-const WalletUnlock = () => (
+const WalletUnlock = (props) => (
   <>
     <CardHeader text="Access your account" />
     <Form.Input fluid placeholder="Enter seed" size="large" />
     <Grid columns={2}>
       <Grid.Column verticalAlign="middle" floated="left" textAlign="left">
-        <h5 style={{ color: '#FFF' }}>Create wallet</h5>
+        <h5
+          style={{ color: '#FFF' }}
+          onClick={() => props.setView(VIEWS.WALLET_CREATE)}
+        >
+          Create wallet
+        </h5>
       </Grid.Column>
       <Grid.Column>
         <Button
