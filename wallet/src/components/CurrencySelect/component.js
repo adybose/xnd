@@ -15,15 +15,6 @@ const currencyOptions = [
     },
   },
   {
-    key: 'btc',
-    text: 'Bitcoin',
-    value: 'BTC',
-    image: {
-      avatar: true,
-      src: 'https://cryptoicons.org/api/color/btc/200/f7931a ',
-    },
-  },
-  {
     key: 'eth',
     text: 'Ethereum',
     value: 'ETH',
@@ -42,6 +33,7 @@ const CurrencySelect = (props) => (
       fluid
       selection
       options={currencyOptions}
+      onChange={(e, { value }) => props.setCurrency(value)}
     />
     <Grid>
       <Grid.Column>
@@ -52,7 +44,8 @@ const CurrencySelect = (props) => (
             color: '#FFF',
           }}
           floated="right"
-          onClick={() => props.setView(VIEWS.WALLET_CREATE)}
+          onClick={() => props.setView(VIEWS.WALLET_UNLOCK)}
+          disabled={props.preferences.currency === null}
         >
           Next
         </Button>

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
 import viewsReducer from './viewsReducer'
+import preferencesReducer from './preferencesReducer'
 
 const reducer = combineReducers({
   views: viewsReducer,
+  preferences: preferencesReducer,
 })
 
 const rootReducer = (state, action) => {
