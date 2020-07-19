@@ -1,5 +1,6 @@
 const defaultState = {
   currency: null,
+  raining: false,
 }
 
 export default (state = defaultState, action) => {
@@ -8,6 +9,13 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         currency: action.data,
+      }
+    }
+
+    case 'PREFERENCES.SET_RAINING': {
+      return {
+        ...state,
+        raining: action.data,
       }
     }
 
