@@ -1,7 +1,8 @@
 const Views = {
-  CURRENCY_SELECT: 0,
-  WALLET_UNLOCK: 1,
-  WALLET_CREATE: 2,
+  APP_LOGIN: 0,
+  CURRENCY_SELECT: 1,
+  WALLET_UNLOCK: 2,
+  WALLET_CREATE: 3,
 }
 
 export default Views
