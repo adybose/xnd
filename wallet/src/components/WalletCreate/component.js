@@ -6,7 +6,7 @@ import VIEWS from '../../views'
 
 const WalletCreate = (props) => (
   <>
-    <CardHeader text="Create new wallet" />
+    <CardHeader text={`Create new ${props.preferences.currency} wallet`} />
 
     <Grid>
       <Grid.Row>
@@ -25,7 +25,7 @@ const WalletCreate = (props) => (
         <Grid.Column>
           <Input
             fluid
-            label="XRP"
+            label="Seed"
             labelPosition="left"
             size="small"
             action={{
@@ -33,6 +33,21 @@ const WalletCreate = (props) => (
               icon: 'copy',
             }}
             defaultValue="ssrNYjaoTWcMhqvvGP3dNSoHgKi99"
+          />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <Input
+            fluid
+            label={`0 ${props.preferences.currency}`}
+            labelPosition="left"
+            size="small"
+            action={{
+              color: 'teal',
+              icon: 'copy',
+            }}
+            defaultValue="rhx2aB9R5NtFhaZLwfFdRZgqPiCmin9fPt"
           />
         </Grid.Column>
       </Grid.Row>
