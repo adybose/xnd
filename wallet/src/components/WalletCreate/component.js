@@ -13,18 +13,6 @@ const WalletCreate = (props) => (
         <Grid.Column>
           <Input
             fluid
-            label="PayID"
-            labelPosition="left"
-            size="small"
-            icon="check"
-            defaultValue="alice$127.0.0.1"
-          />
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column>
-          <Input
-            fluid
             label="Seed"
             labelPosition="left"
             size="small"

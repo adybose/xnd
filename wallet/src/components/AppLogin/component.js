@@ -1,12 +1,12 @@
 import React from 'react'
-import { Button, Grid } from 'semantic-ui-react'
+import { Button, Grid, Icon } from 'semantic-ui-react'
 
 import CardHeader from '../CardHeader'
 import VIEWS from '../../views'
 
 const AppLogin = (props) => (
   <>
-    <CardHeader text="Sign in with Github" />
+    <CardHeader text="Login" />
     <Grid>
       <Grid.Column>
         <Button
@@ -17,7 +17,8 @@ const AppLogin = (props) => (
           }}
           onClick={() => props.setView(VIEWS.CURRENCY_SELECT)}
         >
-          Login
+          <Icon name="github" />
+          Authorize GitHub
         </Button>
       </Grid.Column>
     </Grid>
