@@ -8,8 +8,11 @@ const options = [{ key: 'sign-out', text: 'Logout', icon: 'sign out' }]
 const trigger = (
   <span
     style={{
-      color: '#000',
       fontWeight: 'bold',
+      background:
+        'linear-gradient(to right,#FF4403 25%,#8601FF 50%,#0254FF 75%,#06C223 100%) 0 0',
+      webkitBackgroundClip: 'text',
+      color: 'transparent',
     }}
   >
     <Image src="payid.png" avatar />
