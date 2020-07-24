@@ -2,8 +2,23 @@ import React from 'react'
 import { Grid, Dropdown, Image } from 'semantic-ui-react'
 
 import VIEWS from '../../views'
+import Cookies from 'universal-cookie'
 
-const options = [{ key: 'sign-out', text: 'Logout', icon: 'sign out' }]
+const cookies = new Cookies()
+
+const options = [
+  { key: 'dummy', text: '', icon: null, value: 1 },
+  { key: 'sign-out', text: 'Logout', icon: 'sign out', value: 2 },
+]
+
+const handleMenu = (e, { value }) => {
+  if (value === 2) {
+    // Logout
+    cookies.remove('github')
+    cookies.remove('username')
+    window.location.href = '/'
+  }
+}
 
 const trigger = (
   <span
@@ -16,7 +31,7 @@ const trigger = (
     }}
   >
     <Image src="payid.png" avatar />
-    alice$localhost
+    {`${cookies.get('username')}$${window.location.hostname}`}
   </span>
 )
 
@@ -29,6 +44,7 @@ const Menu = (props) =>
           options={options}
           pointing="top left"
           icon={null}
+          onChange={handleMenu}
         />
       </Grid.Column>
     </Grid>
