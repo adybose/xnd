@@ -1,10 +1,11 @@
-import json
 import os
 
 import requests
 from flask import Flask, abort, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app)
 
 CLIENT_ID = "e0b192fcc3e5b7cb1462"
 CLIENT_SECRET = os.environ["GITHUB_CLIENT_SECRET"]
@@ -17,12 +18,8 @@ def authenticate(code):
 
     url = "https://github.com/login/oauth/access_token"
     header = {"Accept": "application/json"}
-    response = requests.post(url, data=json.dumps(data), headers=header).json()
-
-    if "error" in response:
-        abort(401)
-
-    return jsonify({"accessToken": response["access_token"]})
+    response = requests.post(url, data=data, headers=header).json()
+    return jsonify(response)
 
 
 if __name__ == "__main__":
