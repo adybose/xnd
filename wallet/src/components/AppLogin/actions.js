@@ -1,11 +1,19 @@
 import axios from 'axios'
+import _ from 'lodash'
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
+const scheme = _.includes(
+  ['localhost', '127.0.0.1', '0.0.0.0'],
+  window.location.hostname
+)
+  ? 'http'
+  : 'https'
+
 export const getAuthenticationToken = (code) => async (dispatch) => {
   axios
-    .get(`http://${window.location.hostname}:9000/authenticate/${code}`)
+    .get(`${scheme}://${window.location.hostname}:9000/authenticate/${code}`)
     .catch((error) => {
       console.error(error)
       cookies.remove('github')
