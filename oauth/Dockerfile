@@ -9,6 +9,6 @@ RUN pipenv install
 
 COPY app.py ./
 
-CMD ["pipenv", "run", "python", "app.py"]
+CMD ["pipenv", "run", "prod"]
 
 EXPOSE 9000

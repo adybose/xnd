@@ -11,6 +11,10 @@ black = "==19.10b0"
 flask = "*"
 requests = "*"
 flask-cors = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
+
+[scripts]
+prod = "./run_prod.sh"
