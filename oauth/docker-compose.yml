@@ -7,7 +7,4 @@ services:
       - "9000:9000"
     environment:
       GITHUB_CLIENT_SECRET: $GITHUB_CLIENT_SECRET
-    volumes:
-      - /etc/letsencrypt/live/xnd.money/fullchain.pem:/etc/letsencrypt/live/xnd.money/fullchain.pem
-      - /etc/letsencrypt/live/xnd.money/privkey.pem:/etc/letsencrypt/live/xnd.money/privkey.pem
-    command: pipenv run gunicorn --certfile /etc/letsencrypt/live/xnd.money/fullchain.pem --keyfile /etc/letsencrypt/live/xnd.money/privkey.pem -b 0.0.0.0:9000 app:app
+    command: pipenv run gunicorn -b 0.0.0.0:9000 app:app

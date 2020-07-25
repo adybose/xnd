@@ -9,7 +9,7 @@ const scheme = _.includes(
   window.location.hostname
 )
   ? 'http'
-  : 'https'
+  : 'http' // disable HTTPS
 
 export const getAuthenticationToken = (code) => async (dispatch) => {
   axios
