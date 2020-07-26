@@ -7,7 +7,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app)
 
-CLIENT_ID = "04e241589a58fb50fbf9"
+CLIENT_ID = os.environ["GITHUB_CLIENT_ID"]
 CLIENT_SECRET = os.environ["GITHUB_CLIENT_SECRET"]
 
 
