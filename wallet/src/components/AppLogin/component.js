@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import { Button, Grid, Icon } from 'semantic-ui-react'
 
 import CardHeader from '../CardHeader'
@@ -7,7 +8,13 @@ import VIEWS from '../../views'
 
 const cookies = new Cookies()
 
-const CLIENT_ID = 'e0b192fcc3e5b7cb1462'
+const CLIENT_ID = _.includes(
+  ['localhost', '127.0.0.1', '0.0.0.0'],
+  window.location.hostname
+)
+  ? '04e241589a58fb50fbf9'
+  : 'e0b192fcc3e5b7cb1462'
+
 const REDIRECT_URI = window.location.href
 
 class AppLogin extends React.Component {

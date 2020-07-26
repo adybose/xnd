@@ -7,7 +7,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app)
 
-CLIENT_ID = "e0b192fcc3e5b7cb1462"
+CLIENT_ID = "04e241589a58fb50fbf9"
 CLIENT_SECRET = os.environ["GITHUB_CLIENT_SECRET"]
 
 
@@ -23,4 +23,4 @@ def authenticate(code):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=9000, ssl_context='adhoc')
+    app.run(host="0.0.0.0", port=9000)

@@ -4,16 +4,18 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
-const scheme = _.includes(
+const baseUri = window.location.hostname
+
+const oauthServerUri = _.includes(
   ['localhost', '127.0.0.1', '0.0.0.0'],
-  window.location.hostname
+  baseUri
 )
-  ? 'http'
-  : 'http' // disable HTTPS
+  ? `http://${baseUri}:9000`
+  : `https://${baseUri}`  // disable HTTPS
 
 export const getAuthenticationToken = (code) => async (dispatch) => {
   axios
-    .get(`${scheme}://${window.location.hostname}:9000/authenticate/${code}`)
+    .get(`${oauthServerUri}/authenticate/${code}`)
     .catch((error) => {
       console.error(error)
       cookies.remove('github')
