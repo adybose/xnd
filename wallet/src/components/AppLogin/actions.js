@@ -11,7 +11,7 @@ const oauthServerUri = _.includes(
   baseUri
 )
   ? `http://${baseUri}:9000`
-  : `https://${baseUri}`  // use HTTPS for hosted oauth server
+  : `https://xnd-oauth.herokuapp.com`  // use HTTPS for hosted oauth server
 
 export const getAuthenticationToken = (code) => async (dispatch) => {
   axios
