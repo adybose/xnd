@@ -4,7 +4,7 @@ import { Grid, Form, Segment } from 'semantic-ui-react'
 import Menu from '../Menu'
 
 const Card = ({ children }) => (
-  <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
+  <Grid textAlign="center" style={{ height: '90vh' }} verticalAlign="middle">
     <Grid.Row>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Grid.Column textAlign="center">

@@ -15,7 +15,7 @@ const CLIENT_ID = _.includes(
   ? '04e241589a58fb50fbf9'
   : 'e0b192fcc3e5b7cb1462'
 
-const REDIRECT_URI = window.location.href
+const REDIRECT_URI = window.location.origin
 
 class AppLogin extends React.Component {
   componentDidMount() {

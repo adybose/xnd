@@ -11,7 +11,7 @@ const oauthServerUri = _.includes(
   baseUri
 )
   ? `http://${baseUri}:9000`
-  : `https://xnd-oauth.herokuapp.com`  // use HTTPS for hosted oauth server
+  : `https://xnd-oauth.herokuapp.com` // use HTTPS for hosted oauth server
 
 export const getAuthenticationToken = (code) => async (dispatch) => {
   axios
@@ -20,14 +20,30 @@ export const getAuthenticationToken = (code) => async (dispatch) => {
       console.error(error)
       cookies.remove('github')
       cookies.remove('username')
-      window.location.href = '/'
+      dispatch({
+        type: 'PREFERENCES.SET_MESSAGE',
+        data: {
+          error: true,
+          header: 'Authentication with GitHub failed',
+          content: error,
+        },
+      })
+      return
     })
     .then((res) => {
       if (!!res.data.error) {
         console.error(res.data.error)
         cookies.remove('github')
         cookies.remove('username')
-        window.location.href = '/'
+        dispatch({
+          type: 'PREFERENCES.SET_MESSAGE',
+          data: {
+            error: true,
+            header: 'Authentication with GitHub failed',
+            content: res.data.error,
+          },
+        })
+        return
       }
 
       const token = res.data.access_token
@@ -46,6 +62,15 @@ export const getAuthenticationToken = (code) => async (dispatch) => {
           console.error(error)
           cookies.remove('github')
           cookies.remove('username')
+          dispatch({
+            type: 'PREFERENCES.SET_MESSAGE',
+            data: {
+              error: true,
+              header: 'Authentication with GitHub failed',
+              content: error,
+            },
+          })
+          return
         })
     })
 }

@@ -1,6 +1,12 @@
 const defaultState = {
   currency: null,
   raining: false,
+  message: {
+    error: null,
+    success: null,
+    header: null,
+    content: null,
+  },
 }
 
 export default (state = defaultState, action) => {
@@ -16,6 +22,13 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         raining: action.data,
+      }
+    }
+
+    case 'PREFERENCES.SET_MESSAGE': {
+      return {
+        ...state,
+        message: action.data,
       }
     }
 
