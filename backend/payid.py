@@ -36,7 +36,7 @@ class Currency(Enum):
     def network(self) -> str:
         if self in (self.RIPPLE_TESTNET, self.RIPPLE_MAINNET):
             return "XRPL"
-        elif self == (self.ETHEREUM_MAINNET, self.ETHEREUM_RINKEBY):
+        elif self in (self.ETHEREUM_MAINNET, self.ETHEREUM_RINKEBY):
             return "ETH"
 
         raise ValueError
