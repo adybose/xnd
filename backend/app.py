@@ -10,9 +10,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # response = requests.get('https://api.github.com')
-    # print(response)
-    # print(response.json())
     return "Hello, World!"
 
 
