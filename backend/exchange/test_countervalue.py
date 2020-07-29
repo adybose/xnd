@@ -25,6 +25,9 @@ def test_unit_conversion(numerator: Unit, denominator: Unit, expected: float):
 
 def test_unit_conversion_chain():
     assert (wei / XRP) * (XRP / ETH) * (ETH / drops) * (drops / wei) == 1.0
+    assert (drops / ETH) * (wei / XRP) * (ETH / XRP) * (XRP / drops) * (
+        XRP / wei
+    ) == 1.0
 
 
 @pytest.mark.parametrize(
@@ -32,9 +35,11 @@ def test_unit_conversion_chain():
     [
         (1, ETH, XRP, 1349.0),
         (5, ETH, XRP, 6745.0),
-        (1, ETH, wei, 1e-18),
+        (1, ETH, wei, 1e18),
         (2, XRP, wei, 1482579688658265.2),
     ],
 )
 def test_amount_conversion(value, currency, target, expected):
-    assert value * currency * target == expected
+    actual_amount = value * currency * target
+    assert actual_amount.value == expected
+    assert actual_amount.unit == target
