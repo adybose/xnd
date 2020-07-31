@@ -4,7 +4,7 @@ from typing import Optional
 
 import requests
 
-from .models import Network
+from .models import PayIDNetwork
 
 
 @dataclass
@@ -22,7 +22,7 @@ class PayIDServer:
     def write_headers(self) -> dict:
         return {"PayID-API-Version": "2020-06-18", "Content-Type": "application/json"}
 
-    def get_address_by_currency(self, currency: Network) -> Optional[str]:
+    def get_address_by_currency(self, currency: PayIDNetwork) -> Optional[str]:
         url = f"{self.__url_host}:8080/{self.username}"
         headers = {**self.read_headers, **currency.headers}
 
@@ -35,7 +35,7 @@ class PayIDServer:
         if addresses:
             return addresses[0]["addressDetails"]["address"]
 
-    def add_address(self, address: str, currency: Network) -> None:
+    def add_address(self, address: str, currency: PayIDNetwork) -> None:
         if self.get_address_by_currency(currency):
             raise PermissionError("Only one address allowed for a payid")
 
@@ -45,18 +45,18 @@ class PayIDServer:
             "payId": f"{self.username}${self.__payid_host}",
             "addresses": [
                 {
-                    "paymentNetwork": currency.short_name,
+                    "paymentNetwork": currency.code,
                     "environment": currency.environment,
                     "details": {"address": address},
                 }
             ],
         }
 
-        response = requests.post(url, json=payload, headers=self.write_headers,)
+        response = requests.post(url, json=payload, headers=self.write_headers)
         response.raise_for_status()
 
-    def delete(self, username: str) -> None:
-        url = f"{self.__url_host}:8081/users/{username}${self.__payid_host}"
+    def delete(self) -> None:
+        url = f"{self.__url_host}:8081/users/{self.username}${self.__payid_host}"
 
         response = requests.delete(url, headers=self.write_headers)
         response.raise_for_status()
