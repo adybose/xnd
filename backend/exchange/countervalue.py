@@ -45,6 +45,8 @@ class Unit:
                 "ethereum"
             ]["xrp"]
 
+            # Add your commission here. ;)
+
             in_wei = (1 * self).value
             in_drops = (1 * other).value
             return (
@@ -75,6 +77,30 @@ class Amount:
         ratio = self.unit / other
         value_in_other = self.value * ratio
         return Amount(value=value_in_other, unit=other)
+
+    def __gt__(self, other: "Amount"):
+        if self.unit != other.unit:
+            raise TypeError
+
+        return self.value > other.value
+
+    def __ge__(self, other: "Amount"):
+        if self.unit != other.unit:
+            raise TypeError
+
+        return self.value >= other.value
+
+    def __lt__(self, other: "Amount"):
+        if self.unit != other.unit:
+            raise TypeError
+
+        return self.value < other.value
+
+    def __le__(self, other: "Amount"):
+        if self.unit != other.unit:
+            raise TypeError
+
+        return self.value <= other.value
 
 
 drops = Unit("drops")

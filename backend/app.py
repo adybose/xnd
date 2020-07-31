@@ -1,30 +1,23 @@
 from flask import Flask, jsonify
-import requests
 
-
-# TODO: Add methods to store PayId account details like payid and addresses to reduce number of requests
-# TODO: Add POST request to add addresses
+from payid import PayIDNetwork, PayIDServer
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def index():
-    return "Hello, World!"
+@app.route("/<username>/<currency>")
+def get_address(username: str, currency: str):
+    server = PayIDServer(username=username)
+
+    currency = PayIDNetwork.from_string(currency)
+    address = server.get_address_by_currency(currency=currency)
+    return jsonify({"address": address})
 
 
-@app.route('/<user>')
-def get_payid_response(username):
-    url = f"http://xnd.money:8080/{username}"
-    header = {
-        "PayID-Version": "1.0",
-        "Accept": "application/xrpl-testnet+json"}
-    response = requests.get(url, headers=header).json()
-    payid = response.get("payId")
-    addresses = response.get("addresses")
-    print("PayId; ", payid, "Addresses: ", addresses)
-    return jsonify(response)
+@app.route("/transfer")
+def transfer():
+    ...
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(port=9001, debug=True)
