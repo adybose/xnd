@@ -103,10 +103,11 @@ class Amount:
         return self.value <= other.value
 
     def __str__(self) -> str:
-        if not self.unit.base:
-            return "%d" % (self.value,)
+        return _formatted(self.value)
 
-        return "%.3f" % (self.value,)
+
+def _formatted(f):
+    return format(f, ".3f").rstrip("0").rstrip(".")
 
 
 drops = Unit("drops")
