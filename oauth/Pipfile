@@ -12,7 +12,6 @@ flask = "*"
 requests = "*"
 flask-cors = "*"
 gunicorn = "*"
-pyopenssl = "*"
 
 [requires]
 python_version = "3.8"
