@@ -39,7 +39,7 @@ const WalletCreate = (props) => (
               color: 'teal',
               icon: 'copy',
             }}
-            defaultValue="ssrNYjaoTWcMhqvvGP3dNSoHgKi99"
+            defaultValue={props.account.keyMaterial}
             readOnly
           />
         </Grid.Column>
@@ -55,7 +55,7 @@ const WalletCreate = (props) => (
               color: 'teal',
               icon: 'copy',
             }}
-            defaultValue="rhx2aB9R5NtFhaZLwfFdRZgqPiCmin9fPt"
+            defaultValue={props.account.address}
             readOnly
           />
         </Grid.Column>

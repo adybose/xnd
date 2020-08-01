@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, Form, Grid } from 'semantic-ui-react'
 
 import CardHeader from '../CardHeader'
-import VIEWS from '../../views'
 
 const currencyOptions = [
   {
@@ -45,7 +44,7 @@ const CurrencySelect = (props) => (
             color: '#FFF',
           }}
           floated="right"
-          onClick={() => props.setView(VIEWS.WALLET_CREATE)}
+          onClick={() => props.createAccount(props.account.code)}
           disabled={props.account.code === null}
         >
           Create Wallet
