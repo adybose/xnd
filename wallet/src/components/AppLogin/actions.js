@@ -73,7 +73,7 @@ export const setView = () => (dispatch) => {
     .get(`${xndBackendUrl}/${getUser()}`)
     .then((response) => {
       dispatch({
-        type: 'PREFERENCES.SET_ADDRESS',
+        type: 'ACCOUNT.SET_ADDRESS',
         data: response.data,
       })
 

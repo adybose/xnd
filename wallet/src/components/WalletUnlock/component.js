@@ -12,29 +12,35 @@ const WalletUnlock = (props) => (
           textAlign="left"
           style={{ color: '#FFF', fontSize: '0.9rem' }}
         >
-          Unlock your {props.preferences.currency} wallet on the{' '}
-          {props.preferences.environment} network.
+          Unlock your {props.account.currency} wallet on the{' '}
+          {props.account.environment} network.
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column>
           <Input
             fluid
-            label={`0 ${props.preferences.ticker}`}
+            label={`0 ${props.account.ticker}`}
             labelPosition="left"
             size="small"
             action={{
               color: 'teal',
               icon: 'copy',
             }}
-            defaultValue={props.preferences.address}
+            defaultValue={props.account.address}
             readOnly
           />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column>
-          <Form.Input fluid placeholder="Enter seed" size="large" />
+          <Form.Input
+            fluid
+            placeholder={`Enter ${
+              props.account.ticker === 'ETH' ? 'private key' : 'seed'
+            }`}
+            size="large"
+          />
         </Grid.Column>
       </Grid.Row>
 

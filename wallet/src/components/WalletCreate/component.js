@@ -22,7 +22,7 @@ const makeItRainConfig = {
 
 const WalletCreate = (props) => (
   <>
-    <CardHeader text={`Create new ${props.preferences.currency} wallet`} />
+    <CardHeader text={`Create new ${props.account.currency} wallet`} />
 
     <Grid>
       <Grid.Row>
@@ -45,7 +45,7 @@ const WalletCreate = (props) => (
         <Grid.Column>
           <Input
             fluid
-            label={`0 ${props.preferences.ticker}`}
+            label={`0 ${props.account.ticker}`}
             labelPosition="left"
             size="small"
             action={{

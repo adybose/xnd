@@ -45,7 +45,7 @@ const CurrencySelect = (props) => (
           }}
           floated="right"
           onClick={() => props.setView(VIEWS.WALLET_UNLOCK)}
-          disabled={props.preferences.currency === null}
+          disabled={props.account.currency === null}
         >
           Next
         </Button>

@@ -5,6 +5,7 @@ import { setView, setRaining } from './actions'
 
 const mapStateToProps = (state) => ({
   preferences: state.preferences,
+  account: state.account,
 })
 
 const mapDispatchToProps = (dispatch) => ({

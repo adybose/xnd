@@ -5,7 +5,7 @@ import component from './component'
 import { setView } from './actions'
 
 const mapStateToProps = (state) => ({
-  preferences: state.preferences,
+  account: state.account,
 })
 
 const mapDispatchToProps = (dispatch) => ({

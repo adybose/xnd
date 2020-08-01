@@ -4,6 +4,6 @@ export const setView = (index) => ({
 })
 
 export const setCurrency = (ticker) => ({
-  type: 'PREFERENCES.SET_CURRENCY',
+  type: 'ACCOUNT.SET_CURRENCY',
   data: ticker,
 })
