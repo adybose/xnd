@@ -3,7 +3,7 @@ export const setView = (index) => ({
   data: index,
 })
 
-export const setCurrency = (ticker) => ({
-  type: 'ACCOUNT.SET_CURRENCY',
-  data: ticker,
+export const setCode = (code) => ({
+  type: 'ACCOUNT.SET_CODE',
+  data: code,
 })

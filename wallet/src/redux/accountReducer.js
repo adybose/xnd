@@ -1,6 +1,7 @@
 const defaultState = {
   address: null,
   network: null,
+  code: null,
   currency: null,
   environment: null,
   ticker: null,
@@ -8,15 +9,15 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case 'ACCOUNT.SET_CURRENCY': {
+    case 'ACCOUNT.SET_CODE': {
       return {
         ...state,
-        currency: action.data,
+        code: action.data,
       }
     }
 
     case 'ACCOUNT.SET_ADDRESS': {
-      // Set address, network, currency, ticker, and environment
+      // Set address, code, network, currency, ticker, and environment
       return {
         ...state,
         ...action.data,

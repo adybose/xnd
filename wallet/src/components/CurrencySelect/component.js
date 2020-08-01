@@ -33,7 +33,7 @@ const CurrencySelect = (props) => (
       fluid
       selection
       options={currencyOptions}
-      onChange={(e, { value }) => props.setCurrency(value)}
+      onChange={(e, { value }) => props.setCode(value)}
     />
     <Grid>
       <Grid.Column>
@@ -45,7 +45,7 @@ const CurrencySelect = (props) => (
           }}
           floated="right"
           onClick={() => props.setView(VIEWS.WALLET_UNLOCK)}
-          disabled={props.account.currency === null}
+          disabled={props.account.code === null}
         >
           Next
         </Button>
