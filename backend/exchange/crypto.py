@@ -60,7 +60,7 @@ class Vault:
             "gas": 21000,  # standard gas limit for ETH transactions
             "gasPrice": 1000000000,  # hard-coded for simplicity
             "nonce": next_nonce,
-            "chainId": EthereumNetwork.RINKEBY,
+            "chainId": EthereumNetwork.GOERLI,
         }
 
         signed = self.account.sign_transaction(transaction)

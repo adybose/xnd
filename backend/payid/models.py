@@ -2,10 +2,12 @@ from enum import Enum
 
 
 class PayIDNetwork(Enum):
-    RIPPLE_MAINNET = "xrpl-mainnet"
+    # Supported networks
     RIPPLE_TESTNET = "xrpl-testnet"
-    ETHEREUM_MAINNET = "eth-mainnet"
     ETHEREUM_GOERLI = "eth-goerli"
+
+    # ETHEREUM_MAINNET = "eth-mainnet"
+    # RIPPLE_MAINNET = "xrpl-mainnet"
 
     @property
     def environment(self) -> str:
