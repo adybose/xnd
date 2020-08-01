@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import component from './component'
-import { setView, setRaining } from './actions'
+import { setView, setCelebrations } from './actions'
 
 const mapStateToProps = (state) => ({
   preferences: state.preferences,
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setView: (index) => dispatch(setView(index)),
-  setRaining: (raining) => dispatch(setRaining(raining)),
+  setCelebrations: (willCelebrate) => dispatch(setCelebrations(willCelebrate)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(component)

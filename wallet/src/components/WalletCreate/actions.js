@@ -3,7 +3,9 @@ export const setView = (index) => ({
   data: index,
 })
 
-export const setRaining = (raining) => ({
-  type: 'PREFERENCES.SET_RAINING',
-  data: raining,
-})
+export const setCelebrations = (willCelebrate) => async (dispatch) => {
+  dispatch({
+    type: 'PREFERENCES.SET_CELEBRATIONS',
+    data: willCelebrate,
+  })
+}

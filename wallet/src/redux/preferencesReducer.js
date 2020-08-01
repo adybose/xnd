@@ -1,5 +1,5 @@
 const defaultState = {
-  raining: false,
+  celebrations: false,
   message: {
     error: null,
     success: null,
@@ -10,10 +10,10 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case 'PREFERENCES.SET_RAINING': {
+    case 'PREFERENCES.SET_CELEBRATIONS': {
       return {
         ...state,
-        raining: action.data,
+        celebrations: action.data,
       }
     }
 
