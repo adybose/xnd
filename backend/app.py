@@ -1,8 +1,10 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 from payid import PayIDNetwork, PayIDServer
 
 app = Flask(__name__)
+cors = CORS(app)
 
 
 @app.route("/<username>/<currency>")
