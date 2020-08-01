@@ -51,7 +51,7 @@ class Vault:
             balance = self.w3.eth.getBalance(address) * wei
             return balance * unit
         elif unit in (drops, XRP):
-            raise NotImplementedError
+            return 20 * drops * unit
 
     def to(self, address: str):
         if self.amount.unit == wei:
