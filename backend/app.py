@@ -33,7 +33,7 @@ def get_address(username: str):
     abort(404)
 
 
-@app.route("/<username>")
+@app.route("/<username>", methods=["DELETE"])
 def delete(username: str):
     server = PayIDServer(username=username)
     server.delete()
