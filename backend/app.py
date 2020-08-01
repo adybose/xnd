@@ -11,10 +11,17 @@ cors = CORS(app)
 def get_address(username: str):
     server = PayIDServer(username=username)
 
-    for currency in PayIDNetwork:
-        address = server.get_address_by_currency(currency=currency)
+    for network in PayIDNetwork:
+        address = server.get_address_by_network(network)
         if address:
-            return jsonify({"address": address})
+            return jsonify(
+                {
+                    "address": address,
+                    "network": network.value,
+                    "currency": network.code,
+                    "environment": network.environment,
+                }
+            )
 
     abort(404)
 

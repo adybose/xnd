@@ -31,7 +31,7 @@ def test_unit_conversion_chain():
 
 
 @pytest.mark.parametrize(
-    "value, currency, target, expected",
+    "value, network, target, expected",
     [
         (1, ETH, XRP, 1349.0),
         (5, ETH, XRP, 6745.0),

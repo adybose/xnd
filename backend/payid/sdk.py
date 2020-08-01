@@ -22,9 +22,9 @@ class PayIDServer:
     def write_headers(self) -> dict:
         return {"PayID-API-Version": "2020-06-18", "Content-Type": "application/json"}
 
-    def get_address_by_currency(self, currency: PayIDNetwork) -> Optional[str]:
+    def get_address_by_network(self, network: PayIDNetwork) -> Optional[str]:
         url = f"{self.__url_host}:8080/{self.username}"
-        headers = {**self.read_headers, **currency.headers}
+        headers = {**self.read_headers, **network.headers}
 
         response = requests.get(url, headers=headers)
         if response.status_code != 200:
@@ -35,8 +35,8 @@ class PayIDServer:
         if addresses:
             return addresses[0]["addressDetails"]["address"]
 
-    def add_address(self, address: str, currency: PayIDNetwork) -> None:
-        if self.get_address_by_currency(currency):
+    def add_address(self, address: str, network: PayIDNetwork) -> None:
+        if self.get_address_by_network(network):
             raise PermissionError("Only one address allowed for a payid")
 
         url = f"{self.__url_host}:8081/users"
@@ -45,8 +45,8 @@ class PayIDServer:
             "payId": f"{self.username}${self.__payid_host}",
             "addresses": [
                 {
-                    "paymentNetwork": currency.code,
-                    "environment": currency.environment,
+                    "paymentNetwork": network.code,
+                    "environment": network.environment,
                     "details": {"address": address},
                 }
             ],

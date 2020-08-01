@@ -22,8 +22,8 @@ class PayIDNetwork(Enum):
         return self.value.split("-")[0].lower()
 
     @classmethod
-    def from_string(cls, currency: str) -> "PayIDNetwork":
-        if currency not in {network.value for network in cls}:
-            raise ValueError(f"Invalid network: {currency}")
+    def from_string(cls, network: str) -> "PayIDNetwork":
+        if network not in {each.value for each in cls}:
+            raise ValueError(f"Invalid network: {network}")
 
-        return cls(currency)
+        return cls(network)
