@@ -21,6 +21,15 @@ class PayIDNetwork(Enum):
     def code(self) -> str:
         return self.value.split("-")[0].lower()
 
+    @property
+    def ticker(self) -> str:
+        if self in (self.ETHEREUM_GOERLI,):
+            return "ETH"
+        elif self in (self.RIPPLE_TESTNET,):
+            return "XRP"
+
+        raise NotImplementedError
+
     @classmethod
     def from_string(cls, network: str) -> "PayIDNetwork":
         if network not in {each.value for each in cls}:
