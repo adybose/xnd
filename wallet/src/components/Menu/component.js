@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid, Dropdown, Image } from 'semantic-ui-react'
 
 import VIEWS from '../../views'
-import { payId } from '../../globals.js'
+import { getPayId } from '../../globals.js'
 
 import Cookies from 'universal-cookie'
 
@@ -37,7 +37,7 @@ const trigger = (
     }}
   >
     <Image src="payid.png" avatar />
-    {payId()}
+    {getPayId()}
   </span>
 )
 

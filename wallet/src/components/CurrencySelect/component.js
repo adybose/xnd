@@ -8,7 +8,7 @@ const currencyOptions = [
   {
     key: 'xrp',
     text: 'Ripple',
-    value: 'XRP',
+    value: 'xrpl',
     image: {
       avatar: true,
       src: 'https://cryptoicons.org/api/color/xrp/200/232a2e',
@@ -17,7 +17,7 @@ const currencyOptions = [
   {
     key: 'eth',
     text: 'Ethereum',
-    value: 'ETH',
+    value: 'eth',
     image: {
       avatar: true,
       src: 'https://cryptoicons.org/api/color/eth/200/2f3030',

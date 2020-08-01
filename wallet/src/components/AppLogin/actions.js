@@ -1,7 +1,8 @@
 import axios from 'axios'
 import Cookies from 'universal-cookie'
 
-import { xndBackendUrl, xndOauthUrl } from '../../globals.js'
+import { xndBackendUrl, xndOauthUrl, getUser } from '../../globals.js'
+import views from '../../views'
 
 const cookies = new Cookies()
 
@@ -67,9 +68,24 @@ export const getAuthenticationToken = (code) => async (dispatch) => {
     })
 }
 
-export const setView = (index) => (dispatch) => {
-  dispatch({
-    type: 'VIEWS.SET_VIEW',
-    data: index,
-  })
+export const setView = () => (dispatch) => {
+  axios
+    .get(`${xndBackendUrl}/${getUser()}`)
+    .then((response) => {
+      dispatch({
+        type: 'PREFERENCES.SET_ADDRESS',
+        data: response.data,
+      })
+
+      dispatch({
+        type: 'VIEWS.SET_VIEW',
+        data: views.WALLET_UNLOCK,
+      })
+    })
+    .catch((error) => {
+      dispatch({
+        type: 'VIEWS.SET_VIEW',
+        data: views.CURRENCY_SELECT,
+      })
+    })
 }

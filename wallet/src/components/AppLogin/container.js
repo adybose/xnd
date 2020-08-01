@@ -6,7 +6,7 @@ import { setView, getAuthenticationToken } from './actions'
 const mapStateToProps = (state) => ({})
 
 const mapDispatchToProps = (dispatch) => ({
-  setView: (index) => dispatch(setView(index)),
+  setView: () => dispatch(setView()),
   getAuthenticationToken: (code) => dispatch(getAuthenticationToken(code)),
 })
 

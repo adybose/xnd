@@ -4,7 +4,6 @@ import { Button, Grid, Icon } from 'semantic-ui-react'
 
 import CardHeader from '../CardHeader'
 import Cookies from 'universal-cookie'
-import VIEWS from '../../views'
 
 const cookies = new Cookies()
 
@@ -26,7 +25,7 @@ class AppLogin extends React.Component {
       if (code !== null) {
         window.location.href = '/'
       }
-      this.props.setView(VIEWS.CURRENCY_SELECT)
+      this.props.setView()
       return
     }
 

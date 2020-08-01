@@ -12,4 +12,5 @@ export const xndOauthUrl = _.includes(
   : 'https://xnd-oauth.herokuapp.com'
 
 const cookies = new Cookies()
-export const payId = () => `${cookies.get('username')}$${baseUri}`
+export const getUser = () => cookies.get('username')
+export const getPayId = () => `${getUser()}$${baseUri}`
