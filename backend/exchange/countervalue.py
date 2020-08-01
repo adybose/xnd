@@ -102,6 +102,12 @@ class Amount:
 
         return self.value <= other.value
 
+    def __str__(self) -> str:
+        if not self.unit.base:
+            return "%d" % (self.value,)
+
+        return "%.3f" % (self.value,)
+
 
 drops = Unit("drops")
 XRP = Unit("XRP", multiplier=1000000, base=drops)

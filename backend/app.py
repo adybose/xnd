@@ -15,6 +15,9 @@ def get_address(username: str):
     for network in PayIDNetwork:
         address = server.get_address_by_network(network)
         if address:
+            balance = Vault().balance_of(
+                address, ETH if network.ticker == "ETH" else XRP
+            )
             return jsonify(
                 {
                     "address": address,
@@ -23,9 +26,7 @@ def get_address(username: str):
                     "code": network.code,
                     "environment": network.environment,
                     "ticker": network.ticker,
-                    "balance": Vault().balance_of(
-                        address, ETH if network.ticker == "ETH" else XRP
-                    ),
+                    "balance": str(balance),
                 }
             )
 

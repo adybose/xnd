@@ -48,7 +48,7 @@ class Vault:
 
     def balance_of(self, address: str, unit: Unit) -> Amount:
         if unit in (wei, ETH):
-            balance = self.w3.eth.getBalance(address)
+            balance = self.w3.eth.getBalance(address) * wei
             return balance * unit
         elif unit in (drops, XRP):
             raise NotImplementedError
