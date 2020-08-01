@@ -5,6 +5,7 @@ const defaultState = {
   currency: null,
   environment: null,
   ticker: null,
+  keyMaterial: null, // seed or private key, depending on the currency
 }
 
 export default (state = defaultState, action) => {
@@ -13,6 +14,13 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         code: action.data,
+      }
+    }
+
+    case 'ACCOUNT.SET_KEY_MATERIAL': {
+      return {
+        ...state,
+        keyMaterial: action.data,
       }
     }
 
