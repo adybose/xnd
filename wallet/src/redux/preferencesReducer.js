@@ -3,6 +3,7 @@ const defaultState = {
   network: null,
   currency: null,
   environment: null,
+  ticker: null,
 
   raining: false,
   message: {
@@ -23,9 +24,10 @@ export default (state = defaultState, action) => {
     }
 
     case 'PREFERENCES.SET_ADDRESS': {
+      // Set address, network, currency, ticker, and environment
       return {
         ...state,
-        ...action.data, // set address, network, currency, and environment
+        ...action.data,
       }
     }
 

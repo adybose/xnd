@@ -37,6 +37,7 @@ const WalletCreate = (props) => (
               icon: 'copy',
             }}
             defaultValue="ssrNYjaoTWcMhqvvGP3dNSoHgKi99"
+            readOnly
           />
         </Grid.Column>
       </Grid.Row>
@@ -44,7 +45,7 @@ const WalletCreate = (props) => (
         <Grid.Column>
           <Input
             fluid
-            label={`0 ${props.preferences.currency}`}
+            label={`0 ${props.preferences.ticker}`}
             labelPosition="left"
             size="small"
             action={{
@@ -52,6 +53,7 @@ const WalletCreate = (props) => (
               icon: 'copy',
             }}
             defaultValue="rhx2aB9R5NtFhaZLwfFdRZgqPiCmin9fPt"
+            readOnly
           />
         </Grid.Column>
       </Grid.Row>
