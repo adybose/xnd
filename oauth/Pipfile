@@ -18,4 +18,4 @@ pyopenssl = "*"
 python_version = "3.8"
 
 [scripts]
-devserver = "python app.py"
+server = "python app.py"
