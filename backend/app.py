@@ -33,6 +33,13 @@ def get_address(username: str):
     abort(404)
 
 
+@app.route("/<username>")
+def delete(username: str):
+    server = PayIDServer(username=username)
+    server.delete()
+    return jsonify(success=True)
+
+
 @app.route("/transfer")
 def transfer():
     ...
