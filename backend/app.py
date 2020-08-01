@@ -1,4 +1,4 @@
-from flask import Flask, abort, jsonify
+from flask import Flask, abort, jsonify, request
 from flask_cors import CORS
 
 from exchange import ETH, XRP, Vault
@@ -31,6 +31,16 @@ def get_address(username: str):
             )
 
     abort(404)
+
+
+@app.route("/<username>", methods=["POST"])
+def add_address(username: str):
+    data = request.get_json()
+    server = PayIDServer(username=username)
+
+    network = PayIDNetwork(data["network"])
+    server.add_address(data["address"], network)
+    return get_address(username)
 
 
 @app.route("/<username>", methods=["DELETE"])
