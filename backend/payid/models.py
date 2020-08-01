@@ -30,6 +30,15 @@ class PayIDNetwork(Enum):
 
         raise NotImplementedError
 
+    @property
+    def currency(self) -> str:
+        if self in (self.ETHEREUM_GOERLI,):
+            return "Ethereum"
+        elif self in (self.RIPPLE_TESTNET,):
+            return "Ripple"
+
+        raise NotImplementedError
+
     @classmethod
     def from_string(cls, network: str) -> "PayIDNetwork":
         if network not in {each.value for each in cls}:

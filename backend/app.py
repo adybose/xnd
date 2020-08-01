@@ -18,7 +18,8 @@ def get_address(username: str):
                 {
                     "address": address,
                     "network": network.value,
-                    "currency": network.code,
+                    "currency": network.currency,
+                    "code": network.code,
                     "environment": network.environment,
                     "ticker": network.ticker,
                 }
