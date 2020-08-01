@@ -1,4 +1,5 @@
 import views from '../../views'
+import networks from '../../crypto/networks'
 import createRippleAccount from '../../crypto/ripple/createAccount'
 
 export const setView = (index) => ({
@@ -46,9 +47,9 @@ const codeToCurrency = (code) => {
 const codeToNetwork = (code) => {
   switch (code) {
     case 'xrpl':
-      return 'xrpl-testnet'
+      return networks.ripple.testnet
     case 'eth':
-      return 'eth-goerli'
+      return networks.ethereum.testnet
 
     default:
       return {}
