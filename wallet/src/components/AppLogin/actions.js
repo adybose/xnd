@@ -1,21 +1,13 @@
 import axios from 'axios'
-import _ from 'lodash'
 import Cookies from 'universal-cookie'
+
+import { xndBackendUrl, xndOauthUrl } from '../../globals.js'
 
 const cookies = new Cookies()
 
-const baseUri = window.location.hostname
-
-const oauthServerUri = _.includes(
-  ['localhost', '127.0.0.1', '0.0.0.0'],
-  baseUri
-)
-  ? `http://${baseUri}:9000`
-  : `https://xnd-oauth.herokuapp.com` // use HTTPS for hosted oauth server
-
 export const getAuthenticationToken = (code) => async (dispatch) => {
   axios
-    .get(`${oauthServerUri}/authenticate/${code}`)
+    .get(`${xndOauthUrl}/authenticate/${code}`)
     .catch((error) => {
       console.error(error)
       cookies.remove('github')
@@ -75,7 +67,9 @@ export const getAuthenticationToken = (code) => async (dispatch) => {
     })
 }
 
-export const setView = (index) => ({
-  type: 'VIEWS.SET_VIEW',
-  data: index,
-})
+export const setView = (index) => (dispatch) => {
+  dispatch({
+    type: 'VIEWS.SET_VIEW',
+    data: index,
+  })
+}

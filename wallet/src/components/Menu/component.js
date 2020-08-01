@@ -2,17 +2,23 @@ import React from 'react'
 import { Grid, Dropdown, Image } from 'semantic-ui-react'
 
 import VIEWS from '../../views'
+import { payId } from '../../globals.js'
+
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
 const options = [
   { key: 'dummy', text: '', icon: null, value: 1 },
-  { key: 'sign-out', text: 'Logout', icon: 'sign out', value: 2 },
+  { key: 'delink', text: 'Delink PayID', icon: 'unlink', value: 2 },
+  { key: 'sign-out', text: 'Logout', icon: 'sign out', value: 3 },
 ]
 
 const handleMenu = (e, { value }) => {
   if (value === 2) {
+    // call delink api
+    window.location.href = '/'
+  } else if (value === 3) {
     // Logout
     cookies.remove('github')
     cookies.remove('username')
@@ -31,7 +37,7 @@ const trigger = (
     }}
   >
     <Image src="payid.png" avatar />
-    {`${cookies.get('username')}$${window.location.hostname}`}
+    {payId()}
   </span>
 )
 
