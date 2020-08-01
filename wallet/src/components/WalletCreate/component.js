@@ -29,7 +29,7 @@ const WalletCreate = (props) => (
         <Grid.Column>
           <Input
             fluid
-            label="Seed"
+            label={props.account.ticker === 'ETH' ? 'private key' : 'seed'}
             labelPosition="left"
             size="small"
             action={{

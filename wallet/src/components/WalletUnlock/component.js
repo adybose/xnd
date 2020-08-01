@@ -21,7 +21,7 @@ const WalletUnlock = (props) => {
           <Grid.Column>
             <Input
               fluid
-              label={`0 ${props.account.ticker}`}
+              label={`${props.account.balance} ${props.account.ticker}`}
               labelPosition="left"
               size="small"
               action={{

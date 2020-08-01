@@ -73,7 +73,7 @@ export const setView = () => (dispatch) => {
     .get(`${xndBackendUrl}/${getUser()}`)
     .then((response) => {
       dispatch({
-        type: 'ACCOUNT.SET_ADDRESS',
+        type: 'ACCOUNT.INIT',
         data: response.data,
       })
 

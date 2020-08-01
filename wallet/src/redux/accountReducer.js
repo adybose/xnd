@@ -6,6 +6,7 @@ const defaultState = {
   environment: null,
   ticker: null,
   keyMaterial: null, // seed or private key, depending on the currency
+  balance: null,
 }
 
 export default (state = defaultState, action) => {
@@ -24,7 +25,7 @@ export default (state = defaultState, action) => {
       }
     }
 
-    case 'ACCOUNT.SET_ADDRESS': {
+    case 'ACCOUNT.INIT': {
       // Set address, code, network, currency, ticker, and environment
       return {
         ...state,
