@@ -3,9 +3,9 @@ import { Header, Divider } from 'semantic-ui-react'
 
 const CardHeader = (props) => (
   <>
-    {props.views.previousIndex >= 0 && (
+    {props.previous !== undefined && (
       <Header as="span" style={{ color: 'white' }} floated="left">
-        <h4 onClick={() => props.setView(props.views.previousIndex)}>&lt;</h4>
+        <h4 onClick={() => props.setView(props.previous)}>&lt;</h4>
       </Header>
     )}
     <Header as="span" style={{ color: 'white' }} textAlign="center">

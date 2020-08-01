@@ -22,7 +22,10 @@ const makeItRainConfig = {
 
 const WalletCreate = (props) => (
   <>
-    <CardHeader text={`Create new ${props.account.currency} wallet`} />
+    <CardHeader
+      text={`Create new ${props.account.currency} wallet`}
+      previous={VIEWS.CURRENCY_SELECT}
+    />
 
     <Grid>
       <Grid.Row>
