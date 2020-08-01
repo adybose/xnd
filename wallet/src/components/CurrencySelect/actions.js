@@ -1,3 +1,7 @@
+import axios from 'axios'
+
+import { xndBackendUrl, getUser } from '../../globals.js'
+
 import views from '../../views'
 import networks from '../../crypto/networks'
 import createRippleAccount from '../../crypto/ripple/createAccount'
@@ -15,33 +19,34 @@ export const setCode = (code) => ({
 export const createAccount = (code) => (dispatch) => {
   const keyPair = generateKeyPair(code)
 
-  dispatch({
-    type: 'ACCOUNT.INIT',
-    data: {
+  axios
+    .post(`${xndBackendUrl}/${getUser()}`, {
       address: keyPair.address,
       network: codeToNetwork(code),
-      code: code,
-      currency: codeToCurrency(code),
-      environment: codeToEnvironment(code),
-      ticker: codeToTicker(code),
-      keyMaterial: keyPair.keyMaterial,
-      balance: '0',
-    },
-  })
+    })
+    .then((res) => {
+      dispatch({
+        type: 'ACCOUNT.INIT',
+        data: {
+          ...res.data,
+          keyMaterial: keyPair.keyMaterial,
+        },
+      })
+    })
+    .catch((error) => {
+      console.error(error)
+      dispatch({
+        type: 'PREFERENCES.SET_MESSAGE',
+        data: {
+          error: true,
+          header: 'Failed to link address with PayID',
+          content: error,
+        },
+      })
+      return
+    })
 
   dispatch(setView(views.WALLET_CREATE))
-}
-
-const codeToCurrency = (code) => {
-  switch (code) {
-    case 'xrpl':
-      return 'Ripple'
-    case 'eth':
-      return 'Ethereum'
-
-    default:
-      return {}
-  }
 }
 
 const codeToNetwork = (code) => {
@@ -51,29 +56,6 @@ const codeToNetwork = (code) => {
     case 'eth':
       return networks.ethereum.testnet
 
-    default:
-      return {}
-  }
-}
-
-const codeToEnvironment = (code) => {
-  switch (code) {
-    case 'xrpl':
-      return 'TESTNET'
-    case 'eth':
-      return 'GOERLI'
-
-    default:
-      return {}
-  }
-}
-
-const codeToTicker = (code) => {
-  switch (code) {
-    case 'xrpl':
-      return 'XRP'
-    case 'eth':
-      return 'ETH'
     default:
       return {}
   }
