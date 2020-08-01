@@ -1,6 +1,7 @@
 from flask import Flask, abort, jsonify
 from flask_cors import CORS
 
+from exchange import ETH, XRP, Vault
 from payid import PayIDNetwork, PayIDServer
 
 app = Flask(__name__)
@@ -22,6 +23,9 @@ def get_address(username: str):
                     "code": network.code,
                     "environment": network.environment,
                     "ticker": network.ticker,
+                    "balance": Vault().balance_of(
+                        address, ETH if network.ticker == "ETH" else XRP
+                    ),
                 }
             )
 

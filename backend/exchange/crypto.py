@@ -5,7 +5,7 @@ from enum import Enum
 from web3 import HTTPProvider, Web3
 from web3.middleware import geth_poa_middleware
 
-from .countervalue import Amount, drops, wei
+from .countervalue import ETH, XRP, Amount, Unit, drops, wei
 
 
 # EIP 155
@@ -45,6 +45,13 @@ class Vault:
     def eth_reserve(self) -> Amount:
         balance = self.w3.eth.getBalance(self.account.address)
         return balance * wei
+
+    def balance_of(self, address: str, unit: Unit) -> Amount:
+        if unit in (wei, ETH):
+            balance = self.w3.eth.getBalance(address)
+            return balance * unit
+        elif unit in (drops, XRP):
+            raise NotImplementedError
 
     def to(self, address: str):
         if self.amount.unit == wei:
