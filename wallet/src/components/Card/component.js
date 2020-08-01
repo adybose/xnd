@@ -6,7 +6,7 @@ import Menu from '../Menu'
 const Card = ({ children }) => (
   <Grid textAlign="center" style={{ height: '90vh' }} verticalAlign="middle">
     <Grid.Row>
-      <Grid.Column style={{ maxWidth: 450 }}>
+      <Grid.Column style={{ maxWidth: 520 }}>
         <Grid.Column textAlign="center">
           <h2>XND</h2>
         </Grid.Column>
