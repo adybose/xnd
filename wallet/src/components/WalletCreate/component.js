@@ -28,7 +28,7 @@ class WalletCreate extends Component {
   }
 
   keyMaterialName = () =>
-    this.props.account.ticker === 'ETH' ? 'private key' : 'seed'
+    this.props.account.ticker === 'ETH' ? 'Private Key' : 'Seed'
   render() {
     return (
       <>
