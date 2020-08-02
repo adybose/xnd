@@ -12,5 +12,6 @@ export const validateSeed = (account) => {
         getRippleAddressFromSeed(account.keyMaterial) === account.address
       )
     }
+    default: return false
   }
 }
