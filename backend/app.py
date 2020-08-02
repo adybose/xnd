@@ -50,6 +50,15 @@ def delete(username: str):
     return jsonify(success=True)
 
 
+@app.route("/rate/<source>/<destination>")
+def rate(source: str, destination: str):
+    mapping = {"ETH": ETH, "XRP": XRP}
+
+    source, destination = mapping[source], mapping[destination]
+
+    return jsonify({"rate": source / destination})
+
+
 @app.route("/transfer")
 def transfer():
     ...
