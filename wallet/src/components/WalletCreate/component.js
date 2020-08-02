@@ -26,22 +26,40 @@ class WalletCreate extends Component {
       !this.props.preferences.celebrations &&
       this.props.setCelebrations(true)
   }
+
+  keyMaterialName = () =>
+    this.props.account.ticker === 'ETH' ? 'private key' : 'seed'
   render() {
     return (
       <>
         <CardHeader
-          text={`Create new ${this.props.account.currency} wallet`}
+          text={`Your new ${this.props.account.currency} wallet`}
           previous={VIEWS.CURRENCY_SELECT}
         />
 
         <Grid>
           <Grid.Row>
+            <Grid.Column
+              textAlign="left"
+              style={{ color: '#FFF', fontSize: '0.9rem' }}
+            >
+              Welcome to your brand new {this.props.account.currency} wallet on
+              the {this.props.account.environment} network. The generated
+              address has been automatically linked to your PayID.
+              <br />
+              <br />
+              <b>
+                Please create a backup of your {this.keyMaterialName()} in order
+                to spend your funds in future.
+              </b>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
             <Grid.Column>
               <Input
                 fluid
-                label={
-                  this.props.account.ticker === 'ETH' ? 'private key' : 'seed'
-                }
+                label={this.keyMaterialName()}
                 labelPosition="left"
                 size="small"
                 action={{
@@ -69,26 +87,25 @@ class WalletCreate extends Component {
               />
             </Grid.Column>
           </Grid.Row>
-        </Grid>
-
-        <Grid>
-          <Grid.Column>
-            <Button
-              size="medium"
-              style={{
-                background: 'linear-gradient(90deg,#ff3600,#ff8100)',
-                color: '#FFF',
-              }}
-              floated="right"
-              onClick={() => {}}
-            >
-              Unlock Wallet
-              <Confetti
-                active={this.props.preferences.celebrations}
-                config={makeItRainConfig}
-              />
-            </Button>
-          </Grid.Column>
+          <Grid.Row>
+            <Grid.Column>
+              <Button
+                size="medium"
+                style={{
+                  background: 'linear-gradient(90deg,#ff3600,#ff8100)',
+                  color: '#FFF',
+                }}
+                floated="right"
+                onClick={() => {}}
+              >
+                Unlock Wallet
+                <Confetti
+                  active={this.props.preferences.celebrations}
+                  config={makeItRainConfig}
+                />
+              </Button>
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
       </>
     )
