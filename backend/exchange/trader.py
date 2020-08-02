@@ -13,21 +13,14 @@ class Convert:
         self.outgoing = self.incoming * unit
         return self
 
-    def wait_for_incoming(self):
-        ...
+    def wait_for_incoming(self, address: str):
+        while True:
+            tx = Vault().get_tx_from_address(address, self.incoming)
+            if tx:
+                return tx
 
     def send_to(self, address: str):
         """
         CAUTION: Concurrent transactions are NOT supported.
         """
         return Vault().send(self.outgoing).to(address)
-
-
-trade = Convert(5000 * XRP).to(ETH)
-trade.wait_for_incoming()
-try:
-    trade.send_to("0xdeadbeef")
-except:
-    # Reverse the transaction in case of exception.
-    # Sorry for your fees.
-    Convert(5000 * XRP).send_to("r23u43nc82")

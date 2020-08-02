@@ -2,9 +2,9 @@ import os
 from dataclasses import dataclass
 from enum import Enum
 
+from ripple_api import RippleDataAPIClient, RippleRPCClient
 from web3 import HTTPProvider, Web3
 from web3.middleware import geth_poa_middleware
-from ripple_api import RippleRPCClient
 
 from .countervalue import ETH, XRP, Amount, Unit, drops, wei
 
@@ -31,6 +31,8 @@ eth_key = os.environ["ETHEREUM_PRIVATE_KEY"]
 eth_account = w3.eth.account.from_key(eth_key)
 
 rippled = RippleRPCClient("https://s.altnet.rippletest.net:51234")
+ripple_key = os.environ["RIPPLE_SEED"]
+ripple_address = os.environ["RIPPLE_ADDRESS"]
 
 
 @dataclass
@@ -79,6 +81,18 @@ class Vault:
 
         signed = eth_account.sign_transaction(transaction)
         return w3.eth.sendRawTransaction(signed.rawTransaction)
+
+    @staticmethod
+    def get_tx_from_address(address: str, amount: Amount):
+        amount_in_drops = amount * drops
+
+        txs = rippled.account_tx(ripple_address)
+        for tx in txs["transactions"]:
+            data = tx["tx"]
+            if data["Account"] == address and data["Amount"] == str(
+                amount_in_drops.value
+            ):
+                return data["hash"]
 
     def _send_to_ripple_address(self, address: str):
         raise NotImplementedError
