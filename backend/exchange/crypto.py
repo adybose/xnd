@@ -72,11 +72,11 @@ class Vault:
         next_nonce = w3.eth.getTransactionCount(eth_account.address)
         transaction = {
             "to": address,
-            "value": self.amount.value,
+            "value": int(self.amount.value),
             "gas": 21000,  # standard gas limit for ETH transactions
             "gasPrice": 1000000000,  # hard-coded for simplicity
             "nonce": next_nonce,
-            "chainId": EthereumNetwork.GOERLI,
+            "chainId": EthereumNetwork.GOERLI.value,
         }
 
         signed = eth_account.sign_transaction(transaction)

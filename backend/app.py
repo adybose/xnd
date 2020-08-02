@@ -91,7 +91,7 @@ def transfer():
         Convert(amount * source).send_to(source_address)
         abort(500)
     else:
-        return jsonify({"txHash": tx_hash})
+        return jsonify({"txHash": tx_hash.hex()})
 
 
 if __name__ == "__main__":
