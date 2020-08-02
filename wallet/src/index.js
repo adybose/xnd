@@ -11,9 +11,7 @@ import './index.css'
 const render = (Component) => {
   ReactDOM.render(
     <Provider store={store}>
-      <React.StrictMode>
-        <Component />
-      </React.StrictMode>
+      <Component />
     </Provider>,
     document.getElementById('root')
   )
