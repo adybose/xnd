@@ -1,13 +1,11 @@
-import { XrplNetwork } from 'xpring-js'
-
 const networks = {
   ethereum: {
     mainnet: 'eth-mainnet',
     testnet: 'eth-goerli',
   },
   ripple: {
-    mainnet: `xrpl-${XrplNetwork.Main}`,
-    testnet: `xrpl-${XrplNetwork.Test}`,
+    mainnet: `xrpl-mainnet`,
+    testnet: `xrpl-testnet`,
   },
 }
 
