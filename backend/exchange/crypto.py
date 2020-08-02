@@ -17,25 +17,26 @@ class EthereumNetwork(Enum):
     GOERLI = 5
 
 
+# initialize web3 instance
+INFURA_PROJECT_ID = os.environ["INFURA_PROJECT_ID"]
+
+w3 = Web3(
+    Web3.HTTPProvider(
+        f"https://{EthereumNetwork.GOERLI.name.lower()}.infura.io/v3/{INFURA_PROJECT_ID}"
+    )
+)
+w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+eth_key = os.environ["ETHEREUM_PRIVATE_KEY"]
+eth_account = w3.eth.account.from_key(eth_key)
+
+rippled = RippleRPCClient("https://s.altnet.rippletest.net:51234")
+
+
 @dataclass
 class Vault:
     # This is a crime against humanity. Consider using https://vaultplatform.ledger.com
     amount: Amount = None
-
-    # initialize web3 instance
-    INFURA_PROJECT_ID = os.environ["INFURA_PROJECT_ID"]
-
-    w3 = Web3(
-        Web3.HTTPProvider(
-            f"https://{EthereumNetwork.GOERLI.name.lower()}.infura.io/v3/{INFURA_PROJECT_ID}"
-        )
-    )
-    w3.middleware_onion.inject(geth_poa_middleware, layer=0)
-
-    eth_key = os.environ["ETHEREUM_PRIVATE_KEY"]
-    eth_account = w3.eth.account.from_key(eth_key)
-
-    rippled = RippleRPCClient("https://s.altnet.rippletest.net:51234")
 
     def send(self, amount: Amount):
         if amount >= self.eth_reserve:
@@ -46,15 +47,15 @@ class Vault:
 
     @property
     def eth_reserve(self) -> Amount:
-        balance = self.w3.eth.getBalance(self.eth_account.address)
+        balance = w3.eth.getBalance(eth_account.address)
         return balance * wei
 
     def balance_of(self, address: str, unit: Unit) -> Amount:
         if unit in (wei, ETH):
-            balance = self.w3.eth.getBalance(address) * wei
+            balance = w3.eth.getBalance(address) * wei
             return balance * unit
         elif unit in (drops, XRP):
-            account_info = self.rippled.account_info(address)
+            account_info = rippled.account_info(address)
             balance = account_info.get("account_data", {}).get("Balance", 0)
             balance = int(balance) * drops
             return balance * unit
@@ -66,7 +67,7 @@ class Vault:
             return self._send_to_ripple_address(address)
 
     def _send_to_ethereum_address(self, address: str):
-        next_nonce = self.w3.eth.getTransactionCount(self.eth_account.address)
+        next_nonce = w3.eth.getTransactionCount(eth_account.address)
         transaction = {
             "to": address,
             "value": self.amount.value,
@@ -76,8 +77,8 @@ class Vault:
             "chainId": EthereumNetwork.GOERLI,
         }
 
-        signed = self.eth_account.sign_transaction(transaction)
-        return self.w3.eth.sendRawTransaction(signed.rawTransaction)
+        signed = eth_account.sign_transaction(transaction)
+        return w3.eth.sendRawTransaction(signed.rawTransaction)
 
     def _send_to_ripple_address(self, address: str):
         raise NotImplementedError
