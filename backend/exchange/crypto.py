@@ -4,6 +4,7 @@ from enum import Enum
 
 from web3 import HTTPProvider, Web3
 from web3.middleware import geth_poa_middleware
+from ripple_api import RippleRPCClient
 
 from .countervalue import ETH, XRP, Amount, Unit, drops, wei
 
@@ -31,8 +32,10 @@ class Vault:
     )
     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-    key = os.environ["ETHEREUM_PRIVATE_KEY"]
-    account = w3.eth.account.from_key(key)
+    eth_key = os.environ["ETHEREUM_PRIVATE_KEY"]
+    eth_account = w3.eth.eth_account.from_key(eth_key)
+
+    rippled = RippleRPCClient("https://s.altnet.rippletest.net:51234")
 
     def send(self, amount: Amount):
         if amount >= self.eth_reserve:
@@ -43,7 +46,7 @@ class Vault:
 
     @property
     def eth_reserve(self) -> Amount:
-        balance = self.w3.eth.getBalance(self.account.address)
+        balance = self.w3.eth.getBalance(self.eth_account.address)
         return balance * wei
 
     def balance_of(self, address: str, unit: Unit) -> Amount:
@@ -51,7 +54,10 @@ class Vault:
             balance = self.w3.eth.getBalance(address) * wei
             return balance * unit
         elif unit in (drops, XRP):
-            return 20 * drops * unit
+            account_info = self.rippled.account_info(address)
+            balance = account_info.get("account_data", {}).get("Balance", 0)
+            balance = int(balance) * drops
+            return balance * unit
 
     def to(self, address: str):
         if self.amount.unit == wei:
@@ -60,7 +66,7 @@ class Vault:
             return self._send_to_ripple_address(address)
 
     def _send_to_ethereum_address(self, address: str):
-        next_nonce = self.w3.eth.getTransactionCount(self.account.address)
+        next_nonce = self.w3.eth.getTransactionCount(self.eth_account.address)
         transaction = {
             "to": address,
             "value": self.amount.value,
@@ -70,7 +76,7 @@ class Vault:
             "chainId": EthereumNetwork.GOERLI,
         }
 
-        signed = self.account.sign_transaction(transaction)
+        signed = self.eth_account.sign_transaction(transaction)
         return self.w3.eth.sendRawTransaction(signed.rawTransaction)
 
     def _send_to_ripple_address(self, address: str):

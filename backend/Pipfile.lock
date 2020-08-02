@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b62978e3554a01d006f74e02c15df0a9cbb61eec63b38779bcc1a258744b9e64"
+            "sha256": "9e4371d2ab51eba5619127033564f4c218d21975e467c622ebb8eca26a059c3d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -338,6 +338,14 @@
                 "sha256:28669905fe725965daa16184933676547c5bb40a5153055a8dee2a4bd7933ad3"
             ],
             "version": "==0.16.0"
+        },
+        "python-ripple-lib": {
+            "hashes": [
+                "sha256:05c62c1ad55a662b6f0f9734999401e9c931ca55d0664451da26e4ae8a8d04eb",
+                "sha256:21c9f70e9c74cefe77d6071e8b82983d23d037bae062865b59371fbe93f0e7f3"
+            ],
+            "index": "pypi",
+            "version": "==1.0.8"
         },
         "requests": {
             "hashes": [
