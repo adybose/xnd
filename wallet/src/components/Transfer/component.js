@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  Form,
-  Grid,
-  Input,
-  Icon,
-  Segment,
-  Header,
-} from 'semantic-ui-react'
+import { Button, Form, Grid, Input, Icon } from 'semantic-ui-react'
 
 import CardHeader from '../CardHeader'
 
@@ -34,7 +26,12 @@ const Transfer = (props) => {
               placeholder="Enter PayID"
               size="massive"
               value={props.transfer.payId}
-              onChange={(e) => props.setPayId(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value.endsWith('$xnd.money')) {
+                  props.setRate(e.target.value, props.account.ticker)
+                }
+                props.setPayId(e.target.value)
+              }}
             />
           </Grid.Column>
         </Grid.Row>
@@ -64,11 +61,16 @@ const Transfer = (props) => {
             />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column textAlign="left" style={{ color: '#FFF' }}>
-            Receiver gets 10 ETH.
-          </Grid.Column>
-        </Grid.Row>
+        {props.transfer.rate !== null &&
+          props.transfer.from !== null &&
+          props.transfer.payId !== null && (
+            <Grid.Row>
+              <Grid.Column textAlign="left" style={{ color: '#FFF' }}>
+                Receiver gets {props.transfer.rate * props.transfer.from}{' '}
+                {props.transfer.toTicker}.
+              </Grid.Column>
+            </Grid.Row>
+          )}
         <Grid.Row>
           <Grid.Column>
             <Button
