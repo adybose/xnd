@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { xndBackendUrl } from '../../globals.js'
+import { xndBackendUrl, getUser } from '../../globals.js'
+
+import { sendXRP } from '../../crypto/ripple/sender'
 
 export const setPayId = (payId) => ({
   type: 'TRANSFER.SET_PAYID',
@@ -46,6 +48,41 @@ export const setRate = (destinationPayId, from) => (dispatch) => {
           type: 'TRANSFER.SET_TO_TICKER',
           data: ticker,
         })
+      })
+    })
+}
+
+export const sendTransaction = (props) => async (dispatch) => {
+  const hash = await sendXRP(props.account.keyMaterial, props.transfer.from)
+
+  axios
+    .post(`${xndBackendUrl}/transfer`, {
+      sourceUsername: getUser(),
+      destinationPayId: props.transfer.payId,
+      amount: props.transfer.from,
+      sourceTicker: props.account.ticker,
+      destinationTicker: props.transfer.toTicker,
+      txHash: hash,
+    })
+    .catch((error) => {
+      dispatch({
+        type: 'PREFERENCES.SET_MESSAGE',
+        data: {
+          error: true,
+          header: 'Transaction submission failed!',
+          content: error,
+        },
+      })
+      return
+    })
+    .then((res) => {
+      dispatch({
+        type: 'PREFERENCES.SET_MESSAGE',
+        data: {
+          success: true,
+          header: 'Transaction submission successful!',
+          content: `XRP transaction hash: ${hash}  ETH transaction hash: ${res.data.txHash}.`,
+        },
       })
     })
 }

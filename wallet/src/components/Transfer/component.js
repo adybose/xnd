@@ -90,6 +90,7 @@ class Transfer extends Component {
                 }}
                 floated="right"
                 disabled={false}
+                onClick={() => this.props.sendTransaction(this.props)}
               >
                 XND
               </Button>
