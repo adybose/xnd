@@ -4,7 +4,7 @@ import { xndBackendUrl, getUser } from '../../globals.js'
 
 import views from '../../views'
 import networks from '../../crypto/networks'
-import createRippleAccount from '../../crypto/ripple/createAccount'
+import { createRippleAccount } from '../../crypto/ripple/createAccount'
 
 export const setView = (index) => ({
   type: 'VIEWS.SET_VIEW',

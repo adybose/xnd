@@ -1,9 +1,8 @@
 import { generateSeed, deriveKeypair, deriveAddress } from 'ripple-keypairs'
 
-const createAccount = () => {
+export const createRippleAccount = () => {
   const seed = generateSeed()
-  const keypair = deriveKeypair(seed)
-  const address = deriveAddress(keypair.publicKey)
+  const address = getRippleAddressFromSeed(seed)
 
   return {
     keyMaterial: seed,
@@ -11,4 +10,11 @@ const createAccount = () => {
   }
 }
 
-export default createAccount
+export const getRippleAddressFromSeed = (seed) => {
+  try {
+    const keypair = deriveKeypair(seed)
+    return deriveAddress(keypair.publicKey)
+  } catch (e) {
+    return null
+  }
+}
