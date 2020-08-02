@@ -33,7 +33,7 @@ class Vault:
     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
     eth_key = os.environ["ETHEREUM_PRIVATE_KEY"]
-    eth_account = w3.eth.eth_account.from_key(eth_key)
+    eth_account = w3.eth.account.from_key(eth_key)
 
     rippled = RippleRPCClient("https://s.altnet.rippletest.net:51234")
 
