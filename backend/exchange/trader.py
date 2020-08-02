@@ -13,9 +13,9 @@ class Convert:
         self.outgoing = self.incoming * unit
         return self
 
-    def wait_for_incoming(self, address: str):
+    def wait_for_incoming(self, address: str, transaction_hash: str):
         while True:
-            tx = Vault().get_tx_from_address(address, self.incoming)
+            tx = Vault().get_tx_from_address(address, transaction_hash, self.incoming)
             if tx:
                 return tx
 

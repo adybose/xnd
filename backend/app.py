@@ -79,8 +79,10 @@ def transfer():
     source_username = data["sourceUsername"]
     source_address = _get_address(source_username)
 
+    tx_hash = data["txHash"]
+
     trade = Convert(amount * source).to(ETH)
-    trade.wait_for_incoming(source_address)
+    trade.wait_for_incoming(source_address, tx_hash)
     try:
         tx_hash = trade.send_to(destination_address)
     except:
