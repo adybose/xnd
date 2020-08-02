@@ -85,14 +85,13 @@ class Vault:
     @staticmethod
     def get_tx_from_address(address: str, transaction_hash: str, amount: Amount):
         amount_in_drops = amount * drops
-
         txs = rippled.account_tx(ripple_address)
         for tx in txs["transactions"]:
             data = tx["tx"]
             if (
                 data["hash"] == transaction_hash
                 and data["Account"] == address
-                and data["Amount"] == str(amount_in_drops.value)
+                and data["Amount"] == str(amount_in_drops)
             ):
                 return data["hash"]
 
