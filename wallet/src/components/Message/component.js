@@ -22,7 +22,10 @@ class MessageBlock extends Component {
             success={this.props.success}
             onDismiss={this.handleDismiss}
             header={this.props.header}
-            content={this.props.content}
+            content={
+              Array.isArray(this.props.content) ? null : this.props.content
+            }
+            list={Array.isArray(this.props.content) ? this.props.content : null}
           />
         </Container>
       )

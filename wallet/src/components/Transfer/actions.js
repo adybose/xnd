@@ -81,7 +81,10 @@ export const sendTransaction = (props) => async (dispatch) => {
         data: {
           success: true,
           header: 'Transaction submission successful!',
-          content: `XRP transaction hash: ${hash}  ETH transaction hash: ${res.data.txHash}.`,
+          content: [
+            `XRP transaction hash: ${hash}`,
+            `ETH transaction hash: ${res.data.txHash}.`,
+          ],
         },
       })
     })
