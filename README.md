@@ -1,8 +1,10 @@
 # xnd
 
-XND is a PayID enabled wallet that can perform cross-chain transactions.
+XND is a PayID enabled non-custodial wallet that can perform cross-chain transactions.
 
 Just specify the PayID of the recipient along with the target currency, and XND will transfer the amount using the current exchange rate.
+
+Visit [xnd.money](https://xnd.money) to give it a try.
 
 ## Requirements
 
@@ -16,11 +18,13 @@ To run the development server locally, follow the steps below:
 
 - Clone the repository into your machine and enter the `wallet` directory.
 
-- Build the packages by simply running `yarn` from the directory.
+- Install the latest packages by simply running `yarn` from the directory.
 
 - Start the application by running `yarn start`.
 
 - Access the application from your browser at localhost:3000
+
+To run a local Github OAuth server, check out the instructions [here](https://github.com/adbose/xnd/tree/master/oauth).
 
 ## Deployment
 
