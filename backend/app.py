@@ -66,7 +66,6 @@ def rate(source: str, destination: str):
 @app.route("/transfer", methods=["POST"])
 def transfer():
     data = request.get_json()
-    source_pay_id = data["sourcePayId"]
     destination_pay_id = data["destinationPayId"]
     amount = data["amount"]  # in XRP / ETH
 
@@ -77,7 +76,7 @@ def transfer():
     destination_username = destination_pay_id.split("$")[0]
     destination_address = _get_address(destination_username)
 
-    source_username = source_pay_id.split("$")[0]
+    source_username = data["sourceUsername"]
     source_address = _get_address(source_username)
 
     trade = Convert(amount * source).to(ETH)
@@ -89,8 +88,8 @@ def transfer():
         # Sorry for your fees.
         Convert(amount * source).send_to(source_address)
         abort(500)
-
-    return jsonify({"txHash": tx_hash})
+    else:
+        return jsonify({"txHash": tx_hash})
 
 
 if __name__ == "__main__":
