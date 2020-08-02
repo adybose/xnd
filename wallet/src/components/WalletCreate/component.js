@@ -96,7 +96,7 @@ class WalletCreate extends Component {
                   color: '#FFF',
                 }}
                 floated="right"
-                onClick={() => {}}
+                onClick={() => this.props.setView(VIEWS.TRANSFER)}
               >
                 Unlock Wallet
                 <Confetti

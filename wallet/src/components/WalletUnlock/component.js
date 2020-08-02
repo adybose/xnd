@@ -3,6 +3,8 @@ import { Button, Form, Grid, Input } from 'semantic-ui-react'
 
 import CardHeader from '../CardHeader'
 
+import VIEWS from '../../views'
+
 const WalletUnlock = (props) => {
   return (
     <>
@@ -57,6 +59,7 @@ const WalletUnlock = (props) => {
               }}
               floated="right"
               disabled={!props.account.keyMaterial}
+              onClick={() => props.setView(VIEWS.TRANSFER)}
             >
               Unlock Wallet
             </Button>
