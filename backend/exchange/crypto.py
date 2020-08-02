@@ -41,10 +41,10 @@ class Vault:
     amount: Amount = None
 
     def send(self, amount: Amount):
-        if amount >= self.eth_reserve:
+        if amount * wei >= self.eth_reserve:
             raise OverflowError
 
-        self.amount = amount
+        self.amount = amount * wei
         return self
 
     @property

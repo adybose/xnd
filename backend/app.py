@@ -74,10 +74,10 @@ def transfer():
     source, destination = mapping[source], mapping[destination]
 
     destination_username = destination_pay_id.split("$")[0]
-    destination_address = _get_address(destination_username)
+    destination_address = _get_address(destination_username)["address"]
 
     source_username = data["sourceUsername"]
-    source_address = _get_address(source_username)
+    source_address = _get_address(source_username)["address"]
 
     tx_hash = data["txHash"]
 
