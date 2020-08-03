@@ -2,7 +2,7 @@
 
 XND is a PayID enabled non-custodial wallet that can perform cross-chain transactions.
 
-Just specify the PayID of the recipient, and XND will transfer the amount using the current exchange rate.
+Send money to a recipient by just specifying their PayID, and XND will transfer the amount in their preferred currency using the current exchange rate.
 
 ![XND](https://github.com/adbose/xnd/blob/share/xnd_demo_screen.jpg)
 
@@ -28,6 +28,6 @@ To run a local Github OAuth server, check out the instructions [here](https://gi
 
 Visit [xnd.money](https://xnd.money) on Google Chrome to give it a try.
 
-_(Note: This project needs the Disable Content-Security-Policy Chrome [extension](https://chrome.google.com/webstore/detail/disable-content-security/ieelmcmcagommplceebfedjlakkhpden/related?hl=en) installed for the site to load. (See image below:)_
+_Note: This project needs the Disable Content-Security-Policy Chrome [extension](https://chrome.google.com/webstore/detail/disable-content-security/ieelmcmcagommplceebfedjlakkhpden/related?hl=en) installed for the site to load. (See image below:)_
 
 ![Disable Contrent-Security-Policy Chrome Extension](https://github.com/adbose/xnd/blob/share/disable_content_security_policy.png)
