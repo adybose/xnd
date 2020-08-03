@@ -1,33 +1,52 @@
 # xnd
 
-XND is a PayID enabled non-custodial wallet that can perform cross-chain transactions.
+XND is a cryptocurrency wallet with native integration of PayID, that allows cross-chain transactions.
 
-Send money to a recipient by just specifying their PayID, and XND will transfer the amount in their preferred currency using the current exchange rate.
+Users can send any currency to a PayID, and XND will ensure that the amount is recieved in the currency of the address linked to the PayID. XND is non-custodial, so users are always in control of their private keys.
+
+The project is live at [xnd.money](https://xnd.money). You need to disable Content Security Policy to use XND (see Security Note below). This is a hackathon-grade software. Do **NOT** use it on mainnet.
 
 ![XND](https://github.com/adbose/xnd/blob/share/xnd_demo_screen.jpg)
 
-## Requirements
+### Components
 
-Make sure you have **node** (version `14.5.0`) installed in your computer for this project. You can use **NVM** to install a specific version of node.js. ([Read here](https://github.com/nvm-sh/nvm#usage))
+- XND Wallet frontend
+- OAuth server
+- Backend (with swap engine, countervalue API, etc)
 
-You would also need **Yarn** as a package manager, which you can install by simply typing `npm install yarn` from the terminal.
+### Security Note
+
+On production, you need to disable **Content Security Policy** to allow the wallet to execute Javascript in Ripple SDKs. This is only a temporary measure.
+
+The easiest way to do this is install [this Chrome extension](https://chrome.google.com/webstore/detail/disable-content-security/ieelmcmcagommplceebfedjlakkhpden/related?hl=en), and disable CSP when visiting [xnd.money](https://xnd.money).
+
+![Disable Contrent-Security-Policy Chrome Extension](https://github.com/adbose/xnd/blob/share/disable_content_security_policy.png)
+
+
+### Requirements
+
+- Node v14.5.0+. You can use [nvm](https://github.com/nvm-sh/nvm#usage) to manage Node versions.
+- `yarn` package manager. You can install it with `npm install -g yarn`
+- GitHub OAuth credentials. Contact the developers for more information.
+- Python 3.8
 
 ## Usage
 
-To run the development server locally, follow the steps below:
+- Running the wallet frontend on `localhost:3000`.
 
-- Clone the repository into your machine and enter the `wallet` directory.
+  ```sh
+  git clone https://github.com/adbose/xnd
+  cd wallet
+  yarn
+  yarn start
+  ```
+  
+- Running the OAuth server. See instructions [here](https://github.com/adbose/xnd/tree/master/oauth).
 
-- Install the latest packages by simply running `yarn` from the directory.
+- Running the XND backend.
 
-- Start the application by running `yarn start`.
-
-- Access the application from your browser at localhost:3000
-
-To run a local Github OAuth server, check out the instructions [here](https://github.com/adbose/xnd/tree/master/oauth).
-
-Visit [xnd.money](https://xnd.money) on Google Chrome to give it a try.
-
-_Note: This project needs the Disable Content-Security-Policy Chrome [extension](https://chrome.google.com/webstore/detail/disable-content-security/ieelmcmcagommplceebfedjlakkhpden/related?hl=en) installed for the site to load. (See image below:)_
-
-![Disable Contrent-Security-Policy Chrome Extension](https://github.com/adbose/xnd/blob/share/disable_content_security_policy.png)
+  ```sh
+  cd backend
+  pipenv install
+  pipenv run server
+  ```
