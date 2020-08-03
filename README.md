@@ -1,8 +1,10 @@
 # xnd
 
-XND is a PayID enabled wallet that can perform cross-chain transactions.
+XND is a PayID enabled non-custodial wallet that can perform cross-chain transactions.
 
-Just specify the PayID of the recipient along with the target currency, and XND will transfer the amount using the current exchange rate.
+Send money to a recipient by just specifying their PayID, and XND will transfer the amount in their preferred currency using the current exchange rate.
+
+![XND](https://github.com/adbose/xnd/blob/share/xnd_demo_screen.jpg)
 
 ## Requirements
 
@@ -16,15 +18,16 @@ To run the development server locally, follow the steps below:
 
 - Clone the repository into your machine and enter the `wallet` directory.
 
-- Build the packages by simply running `yarn` from the directory.
+- Install the latest packages by simply running `yarn` from the directory.
 
 - Start the application by running `yarn start`.
 
 - Access the application from your browser at localhost:3000
 
-## Deployment
+To run a local Github OAuth server, check out the instructions [here](https://github.com/adbose/xnd/tree/master/oauth).
 
-Follow the steps below to host the application on Digital Ocean:
-- Sign up on Digital Ocean, and create a **New Droplet**.
-- Login via SSH into your newly created droplet by typing `ssh root@<droplet_ipv4_address>`. Make sure you have already added your SSH public key to Digital Ocean.
-- Once logged in, clone the repo inside the droplet, `cd` inside wallet, and run `yarn`.
+Visit [xnd.money](https://xnd.money) on Google Chrome to give it a try.
+
+_Note: This project needs the Disable Content-Security-Policy Chrome [extension](https://chrome.google.com/webstore/detail/disable-content-security/ieelmcmcagommplceebfedjlakkhpden/related?hl=en) installed for the site to load. (See image below:)_
+
+![Disable Contrent-Security-Policy Chrome Extension](https://github.com/adbose/xnd/blob/share/disable_content_security_policy.png)
