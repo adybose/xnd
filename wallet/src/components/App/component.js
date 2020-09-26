@@ -6,6 +6,8 @@ import AppLogin from '../AppLogin'
 import WalletCreate from '../WalletCreate'
 import WalletUnlock from '../WalletUnlock'
 import CurrencySelect from '../CurrencySelect'
+import Home from '../Home'
+import Transactions from '../Transactions'
 import Transfer from '../Transfer'
 
 import Views from '../../views'
@@ -22,6 +24,8 @@ function App(props) {
         ) : null}
         {props.views.index === Views.WALLET_UNLOCK ? <WalletUnlock /> : null}
         {props.views.index === Views.WALLET_CREATE ? <WalletCreate /> : null}
+        {props.views.index === Views.HOME ? <Home /> : null}
+        {props.views.index === Views.TRANSACTIONS ? <Transactions /> : null}
         {props.views.index === Views.TRANSFER ? <Transfer /> : null}
       </Card>
       <Message />
